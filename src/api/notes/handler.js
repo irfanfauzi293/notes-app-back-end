@@ -1,4 +1,4 @@
-const ClientError = require('../../exceptions/ClientError');
+const { handlerError } = require('../../exceptions/HandlerError');
 
 /* eslint-disable no-underscore-dangle */
 class NotesHandler {
@@ -30,24 +30,7 @@ class NotesHandler {
       response.code(201);
       return response;
     } catch (error) {
-      // server ERROR!
-      let status = 'error';
-      let message = 'Maaf, terjadi kegagalan pada server kami.';
-      let responseCode = 500;
-
-      // client ERROR!
-      if (error instanceof ClientError) {
-        status = 'fail';
-        message = error.message;
-        responseCode = error.statusCode;
-      }
-
-      const response = h.response({
-        status,
-        message,
-      });
-      response.code(responseCode);
-      console.error(error);
+      const response = handlerError(error, h);
       return response;
     }
   }
@@ -73,24 +56,7 @@ class NotesHandler {
         },
       };
     } catch (error) {
-      // server ERROR!
-      let status = 'error';
-      let message = 'Maaf, terjadi kegagalan pada server kami.';
-      let responseCode = 500;
-
-      // client ERROR!
-      if (error instanceof ClientError) {
-        status = 'fail';
-        message = error.message;
-        responseCode = error.statusCode;
-      }
-
-      const response = h.response({
-        status,
-        message,
-      });
-      response.code(responseCode);
-      console.error(error);
+      const response = handlerError(error, h);
       return response;
     }
   }
@@ -109,24 +75,7 @@ class NotesHandler {
 
       return response;
     } catch (error) {
-      // server ERROR!
-      let status = 'error';
-      let message = 'Maaf, terjadi kegagalan pada server kami.';
-      let responseCode = 500;
-
-      // client ERROR!
-      if (error instanceof ClientError) {
-        status = 'fail';
-        message = error.message;
-        responseCode = error.statusCode;
-      }
-
-      const response = h.response({
-        status,
-        message,
-      });
-      response.code(responseCode);
-      console.error(error);
+      const response = handlerError(error, h);
       return response;
     }
   }
@@ -142,24 +91,7 @@ class NotesHandler {
         message: 'Catatan berhasil dihapus',
       };
     } catch (error) {
-      // server ERROR!
-      let status = 'error';
-      let message = 'Maaf, terjadi kegagalan pada server kami.';
-      let responseCode = 500;
-
-      // client ERROR!
-      if (error instanceof ClientError) {
-        status = 'fail';
-        message = error.message;
-        responseCode = error.statusCode;
-      }
-
-      const response = h.response({
-        status,
-        message,
-      });
-      response.code(responseCode);
-      console.error(error);
+      const response = handlerError(error, h);
       return response;
     }
   }
